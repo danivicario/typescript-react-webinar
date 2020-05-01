@@ -1,0 +1,31 @@
+@import "./reset.css";
+@import "./App.scss";
+@import "../TodoList/TodoList.scss";
+@import "../TodoItem/TodoItem.scss";
+
+* {
+  box-sizing: border-box;
+  font-family: "Titillium Web";
+}
+
+body {
+  font-family: "Titillium Web";
+  font-size: 10px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0;
+
+  &.bg-1 {
+    background-image: url(../assets/background.jpg);
+  }
+
+  &.bg-2 {
+    background-image: url(../assets/background2.jpg);
+  }
+}

@@ -1,0 +1,67 @@
+.TodoItem {
+  display: block;
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  &.item-done {
+    input[type=text] {
+      text-decoration: line-through;
+    }
+  }
+
+  input[type=checkbox] {
+    margin-right: 0.5rem;
+    font-size: 3rem;
+    height: 2rem;
+  }
+
+  input[type=text] {
+    border: 0;
+    background: none;
+    font-size: 1.6rem;
+    outline: 0;
+  }
+
+  .name {
+    margin-right: 5px;
+    width: 100%;
+    flex-grow: 1;
+
+    &.fav {
+      color: green;
+    }
+  }
+
+  div.name,
+  div.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div.actions {
+    font-size: 1.2rem;
+    button {
+      border: 0;
+      background: none;
+      font-size: 1.25rem;
+      outline: 0;
+      
+      &:hover {
+          cursor: pointer;
+      }
+    }
+
+    button,
+    span {
+      margin-right: .25rem;
+    }
+
+    span {
+        margin-left: .5rem;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+$borderRadius: 5px;
+
+.TodoList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.8);
+  width: 90vw;
+  padding: 2rem;
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+
+  #add-task {
+    width: 100%;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  section.to-do {
+    margin-bottom: 2rem;
+  }
+
+  section.to-do,
+  section.done {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+    ul {
+      width: 100%;
+    }
+  }
+
+  section.done {
+    border-top: 1px dotted #00000066;
+    padding-top: 1.5rem;
+  }
+}
