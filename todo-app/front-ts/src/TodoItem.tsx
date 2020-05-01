@@ -10,7 +10,8 @@ export default class TodoItem extends React.Component<ITask> {
         <div>
           <span>{this.props.timestamp}</span>
           <span>{this.props.isFav && "fav"} </span>
-          <span>{this.props.isDone && "done!"}</span>
+          <input type="button" onClick={() => this.props.deleteTask()} value="🗑" className="🦄" />
+          <input type="checkbox" checked={this.props.isDone} onChange={(e) => this.props.setAsDone(e)}/>
         </div>
       </div>
     );

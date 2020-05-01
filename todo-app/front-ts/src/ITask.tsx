@@ -4,4 +4,6 @@ export default interface ITask {
   timestamp: string;
   isDone: boolean;
   isFav: boolean;
+  setAsDone: any;
+  deleteTask: any;
 }

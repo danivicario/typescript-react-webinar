@@ -33,3 +33,10 @@
   font-size: 2rem;
   margin: 2rem 2rem;
 }
+
+.App .🦄 {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}

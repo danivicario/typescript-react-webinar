@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./css/App.css";
 import TodoItem from "./TodoItem";
 import ITask from "./ITask";
@@ -18,28 +17,34 @@ class App extends React.Component {
         name: "tarea A",
         timestamp: "12/12/2010",
         isDone: !false,
-        isFav: false
+        isFav: false,
+        setAsDone: undefined,
+        deleteTask: undefined
       },
       {
         id: "2",
         name: "tarea B",
         timestamp: "18/12/2013",
         isDone: false,
-        isFav: !false
+        isFav: !false,
+        setAsDone: undefined,
+        deleteTask: undefined
       },
       {
         id: "3",
         name: "tarea C",
         timestamp: "1/1/2020",
         isDone: !false,
-        isFav: !false
+        isFav: !false,
+        setAsDone: undefined,
+        deleteTask: undefined
       }
     ],
-    newTask: "ir a la pelu"
+    newTask: ""
   };
 
   createNewTask(e: any) {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this.state.newTask.trim() !== "") {
       const allTasks = [...this.state.tasks];
 
       allTasks.push({
@@ -47,7 +52,9 @@ class App extends React.Component {
         timestamp: "12/12/2012",
         name: this.state.newTask,
         isFav: false,
-        isDone: false
+        isDone: false,
+        setAsDone: undefined,
+        deleteTask: undefined
       });
 
       this.setState({
@@ -66,6 +73,41 @@ class App extends React.Component {
     });
   }
 
+  setAsDone(id: string): void {
+    // {
+    //   id: "3",
+    //   name: "tarea C",
+    //   timestamp: "1/1/2020",
+    //   isDone: !false,
+    //   isFav: !false,
+    //   setAsDone: undefined
+    // }
+
+    // todo: improve efficiency
+    // let clonedState = [...this.state.tasks]
+
+    // let taskAboutToChange:ITask = clonedState.filter(task => task.id === id)[0];
+    // taskAboutToChange.isDone = !taskAboutToChange.isDone;
+
+    let taskAboutToChange: ITask = this.state.tasks.filter(task => task.id === id)[0];
+    taskAboutToChange.isDone = !taskAboutToChange.isDone;
+
+    this.setState({
+      ...this.state
+    });
+  }
+
+  setAsDeleted(id:string) {
+    let allTasks = [...this.state.tasks]
+
+    allTasks.splice(allTasks.findIndex(task => task.id === id), 1)
+
+    this.setState({
+      ...this.state,
+      tasks: allTasks
+    })
+  }
+
   render() {
     return (
       <div className={`App bg1`}>
@@ -76,19 +118,34 @@ class App extends React.Component {
             className="new-task"
             onKeyDown={e => this.createNewTask(e)}
             onChange={e => this.updateNewTask(e)}
+            placeholder="✏"
           />
-          <h1>To-do ({this.state.tasks.filter(task => !task.isDone).length})</h1>
+          {this.state.tasks.filter(task => !task.isDone).length > 0 && (
+            <h1>To-do ({this.state.tasks.filter(task => !task.isDone).length})</h1>
+          )}
           {this.state.tasks
             .filter(task => !task.isDone)
             .map((task, idx) => (
-              <TodoItem {...task} key={task.id}></TodoItem>
+              <TodoItem
+                {...task}
+                key={task.id}
+                setAsDone={() => this.setAsDone(task.id)}
+                deleteTask={() => this.setAsDeleted(task.id)}
+              ></TodoItem>
             ))}
 
-          <h1>Done ({this.state.tasks.filter(task => task.isDone).length})</h1>
+          {this.state.tasks.filter(task => task.isDone).length > 0 && (
+            <h1>Done ({this.state.tasks.filter(task => task.isDone).length})</h1>
+          )}
           {this.state.tasks
             .filter(task => task.isDone)
             .map((task, idx) => (
-              <TodoItem {...task} key={task.id}></TodoItem>
+              <TodoItem
+                {...task}
+                key={task.id}
+                setAsDone={() => this.setAsDone(task.id)}
+                deleteTask={() => this.setAsDeleted(task.id)}
+              ></TodoItem>
             ))}
         </div>
       </div>
