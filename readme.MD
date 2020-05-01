@@ -2,7 +2,9 @@
 
 ## Instructions
 
-Go to the `tests-typescript` folder and do `npm install` and then ` npm run start:dev`
+For the day 1 examples - go to the `tests-typescript` folder and do `npm install` and then ` npm run start:dev`
+
+For the day 2 to-do list app, go to todo-app and run both back and front, specifying for the back the port in the .env file.
 
 <img src="https://raw.githubusercontent.com/danivicario/typescript-react-webinar/master/wireframe.jpg">
 
