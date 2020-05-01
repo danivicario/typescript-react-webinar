@@ -1,0 +1,31 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.App.bg1 {
+  background: url(../lf_background_trees.jpg) no-repeat;
+  background-size: cover;
+}
+
+.App.bg2 {
+  background: url(../forest2.jpeg) no-repeat;
+  background-size: cover;
+}
+
+.App .inner-wrapper {
+  position: absolute;
+  width: 100%;
+  max-width: 50vw;
+  left: calc(50% - 25vw);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.App .new-task {
+  width: calc(100% - 2rem);
+  padding: 0 1rem;
+  margin: 0 1rem;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
