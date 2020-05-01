@@ -38,22 +38,58 @@ class App extends React.Component {
     newTask: "ir a la pelu"
   };
 
+  createNewTask(e: any) {
+    if (e.keyCode === 13) {
+      const allTasks = [...this.state.tasks];
+
+      allTasks.push({
+        id: Math.round(Math.random() * 1000000).toString(),
+        timestamp: "12/12/2012",
+        name: this.state.newTask,
+        isFav: false,
+        isDone: false
+      });
+
+      this.setState({
+        ...this.state,
+        tasks: allTasks,
+        newTask: ""
+      });
+    }
+  }
+
   // todo: add keyboard event
-  updateNewTask(e:any) {
+  updateNewTask(e: any) {
     this.setState({
       ...this.state,
       newTask: e.target.value
-    })
+    });
   }
 
   render() {
     return (
       <div className={`App bg1`}>
         <div className="inner-wrapper">
-          <input type="text" value={this.state.newTask} className="new-task" onChange={(e) => this.updateNewTask(e)}/>
-          {this.state.tasks.map((task, idx) => (
-            <TodoItem {...task} key={task.id}></TodoItem>
-          ))}
+          <input
+            type="text"
+            value={this.state.newTask}
+            className="new-task"
+            onKeyDown={e => this.createNewTask(e)}
+            onChange={e => this.updateNewTask(e)}
+          />
+          <h1>To-do ({this.state.tasks.filter(task => !task.isDone).length})</h1>
+          {this.state.tasks
+            .filter(task => !task.isDone)
+            .map((task, idx) => (
+              <TodoItem {...task} key={task.id}></TodoItem>
+            ))}
+
+          <h1>Done ({this.state.tasks.filter(task => task.isDone).length})</h1>
+          {this.state.tasks
+            .filter(task => task.isDone)
+            .map((task, idx) => (
+              <TodoItem {...task} key={task.id}></TodoItem>
+            ))}
         </div>
       </div>
     );

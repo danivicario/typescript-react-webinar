@@ -25,7 +25,11 @@
   width: calc(100% - 2rem);
   padding: 0 1rem;
   margin: 0 1rem;
-  margin-bottom: 4rem;
   margin-top: 2rem;
   font-size: 1.5rem;
+}
+
+.App h1 {
+  font-size: 2rem;
+  margin: 2rem 2rem;
 }
