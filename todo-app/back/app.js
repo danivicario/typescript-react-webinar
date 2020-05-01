@@ -11,7 +11,7 @@ const path         = require('path');
 const cors = require("cors")
 
 mongoose
-  .connect('mongodb://localhost/todolist-webmad0120-1', {useNewUrlParser: true})
+  .connect('mongodb://localhost/todolist-webinar', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
