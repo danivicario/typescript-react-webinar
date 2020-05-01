@@ -4,7 +4,11 @@
 
 Go to the `tests-typescript` folder and do `npm install` and then ` npm run start:dev`
 
-All further instructions will come in this space
+<img src="https://raw.githubusercontent.com/danivicario/typescript-react-webinar/master/wireframe.jpg">
+
+Becomes ...
+
+<img src="https://raw.githubusercontent.com/danivicario/typescript-react-webinar/master/working.jpg">
 
 ---
 
