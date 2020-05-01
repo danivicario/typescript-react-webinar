@@ -1,17 +1,23 @@
 import React from "react";
-import ITask from "./ITask";
 import "./css/TodoItem.css";
+import ITodoItem from "./ITodoItem";
 
-export default class TodoItem extends React.Component<ITask> {
+export default class TodoItem extends React.Component<ITodoItem> {
   render() {
     return (
       <div className="todo-item">
         <span>{this.props.name}</span>
         <div>
-          <span>{this.props.timestamp}</span>
-          <span>{this.props.isFav && "fav"} </span>
+          <span className="date">{this.props.timestamp}</span>
+          <button onClick={() => this.props.setTaskAsFav(this.props.id, this.props.isFav)} className="🦄"> 
+            {this.props.isFav ? "★" : "☆"}
+          </button>
           <input type="button" onClick={() => this.props.deleteTask()} value="🗑" className="🦄" />
-          <input type="checkbox" checked={this.props.isDone} onChange={(e) => this.props.setAsDone(e)}/>
+          <input
+            type="checkbox"
+            checked={this.props.isDone}
+            onChange={e => this.props.setAsDone(e)}
+          />
         </div>
       </div>
     );

@@ -15,28 +15,41 @@
 
 .App .inner-wrapper {
   position: absolute;
+  top: 1.5rem;
   width: 100%;
   max-width: 50vw;
   left: calc(50% - 25vw);
   background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
 }
 
 .App .new-task {
   width: calc(100% - 2rem);
-  padding: 0 1rem;
+  padding: 1rem 1rem;
   margin: 0 1rem;
-  margin-top: 2rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  outline: none;
 }
 
 .App h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin: 2rem 2rem;
 }
 
 .App .🦄 {
+  outline: none;
   border: 0;
   background: transparent;
   padding: 0;
-  margin: 0;
+  margin: 0 .5rem;
+  cursor: pointer;
+}
+
+.App .todo-item {
+  margin-bottom: 0.5rem;
+}
+
+.App .todo-item:last-child {
+  margin-bottom: 0;
 }

@@ -1,62 +1,30 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import "./css/App.css";
 import TodoItem from "./TodoItem";
 import ITask from "./ITask";
-// import TodoItem from "./todoItem";
+import allPrecreatedTasks from "./allTasks";
 
-interface MyState {
+interface AppState {
   tasks: ITask[];
   newTask: string;
 }
 
 class App extends React.Component {
-  state: MyState = {
-    tasks: [
-      {
-        id: "1",
-        name: "tarea A",
-        timestamp: "12/12/2010",
-        isDone: !false,
-        isFav: false,
-        setAsDone: undefined,
-        deleteTask: undefined
-      },
-      {
-        id: "2",
-        name: "tarea B",
-        timestamp: "18/12/2013",
-        isDone: false,
-        isFav: !false,
-        setAsDone: undefined,
-        deleteTask: undefined
-      },
-      {
-        id: "3",
-        name: "tarea C",
-        timestamp: "1/1/2020",
-        isDone: !false,
-        isFav: !false,
-        setAsDone: undefined,
-        deleteTask: undefined
-      }
-    ],
+  state: AppState = {
+    tasks: allPrecreatedTasks,
     newTask: ""
   };
 
-  createNewTask(e: any) {
+  createNewTask(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.keyCode === 13 && this.state.newTask.trim() !== "") {
       const allTasks = [...this.state.tasks];
-
       allTasks.push({
         id: Math.round(Math.random() * 1000000).toString(),
         timestamp: "12/12/2012",
         name: this.state.newTask,
         isFav: false,
-        isDone: false,
-        setAsDone: undefined,
-        deleteTask: undefined
+        isDone: false
       });
-
       this.setState({
         ...this.state,
         tasks: allTasks,
@@ -65,47 +33,46 @@ class App extends React.Component {
     }
   }
 
-  // todo: add keyboard event
-  updateNewTask(e: any) {
+  updateNewTask(e: ChangeEvent) {
+    const target = e.target as HTMLInputElement;
+
     this.setState({
       ...this.state,
-      newTask: e.target.value
+      newTask: target.value
     });
   }
 
   setAsDone(id: string): void {
-    // {
-    //   id: "3",
-    //   name: "tarea C",
-    //   timestamp: "1/1/2020",
-    //   isDone: !false,
-    //   isFav: !false,
-    //   setAsDone: undefined
-    // }
-
-    // todo: improve efficiency
-    // let clonedState = [...this.state.tasks]
-
-    // let taskAboutToChange:ITask = clonedState.filter(task => task.id === id)[0];
-    // taskAboutToChange.isDone = !taskAboutToChange.isDone;
-
-    let taskAboutToChange: ITask = this.state.tasks.filter(task => task.id === id)[0];
-    taskAboutToChange.isDone = !taskAboutToChange.isDone;
+    let allTasks = [...this.state.tasks];
+    let selectedTask: ITask | undefined = allTasks.find(task => task.id === id);
+    if (selectedTask !== undefined) selectedTask.isDone = !selectedTask.isDone;
 
     this.setState({
-      ...this.state
+      ...this.state,
+      allTasks: allTasks
     });
   }
 
-  setAsDeleted(id:string) {
-    let allTasks = [...this.state.tasks]
+  setAsDeleted(id: string) {
+    let allTasks = [...this.state.tasks];
 
-    allTasks.splice(allTasks.findIndex(task => task.id === id), 1)
+    allTasks.splice(allTasks.findIndex(task => task.id === id), 1);
 
     this.setState({
       ...this.state,
       tasks: allTasks
-    })
+    });
+  }
+
+  setTaskAsFav(id: string) {
+    let allTasks = [...this.state.tasks];
+    let selectedTask: ITask | undefined = allTasks.find(task => task.id === id);
+    if (selectedTask !== undefined) selectedTask.isFav = !selectedTask.isFav;
+
+    this.setState({
+      ...this.state,
+      allTasks: allTasks
+    });
   }
 
   render() {
@@ -118,33 +85,35 @@ class App extends React.Component {
             className="new-task"
             onKeyDown={e => this.createNewTask(e)}
             onChange={e => this.updateNewTask(e)}
-            placeholder="✏"
+            placeholder="Write new task"
           />
           {this.state.tasks.filter(task => !task.isDone).length > 0 && (
-            <h1>To-do ({this.state.tasks.filter(task => !task.isDone).length})</h1>
+            <h1>To do - {this.state.tasks.filter(task => !task.isDone).length}</h1>
           )}
           {this.state.tasks
             .filter(task => !task.isDone)
-            .map((task, idx) => (
+            .map(task => (
               <TodoItem
                 {...task}
                 key={task.id}
                 setAsDone={() => this.setAsDone(task.id)}
                 deleteTask={() => this.setAsDeleted(task.id)}
+                setTaskAsFav={() => this.setTaskAsFav(task.id)}
               ></TodoItem>
             ))}
 
           {this.state.tasks.filter(task => task.isDone).length > 0 && (
-            <h1>Done ({this.state.tasks.filter(task => task.isDone).length})</h1>
+            <h1>Done - {this.state.tasks.filter(task => task.isDone).length}</h1>
           )}
           {this.state.tasks
             .filter(task => task.isDone)
-            .map((task, idx) => (
+            .map(task => (
               <TodoItem
                 {...task}
                 key={task.id}
                 setAsDone={() => this.setAsDone(task.id)}
                 deleteTask={() => this.setAsDeleted(task.id)}
+                setTaskAsFav={() => this.setTaskAsFav(task.id)}
               ></TodoItem>
             ))}
         </div>
