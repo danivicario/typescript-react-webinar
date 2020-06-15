@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/TodoItem.css";
+import "./css/TodoItem.scss";
 import ITodoItem from "./ITodoItem";
 
 export default class TodoItem extends React.Component<ITodoItem> {

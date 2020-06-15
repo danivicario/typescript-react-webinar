@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import "./css/App.css";
+import "./css/App.scss";
 import TodoItem from "./TodoItem";
 import ITask from "./ITask";
 import allPrecreatedTasks from "./allTasks";
