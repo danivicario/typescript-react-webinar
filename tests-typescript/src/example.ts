@@ -1,5 +1,7 @@
 // Source: https://www.typescriptlang.org/docs/handbook/declaration-files/by-example.html
 
+import CanvasServiceAPI from "./sample.service";
+
 enum Genre {
   H,
   M,
@@ -60,37 +62,13 @@ function sayHello(name: string, age: number, genre: Genre): string {
 }
 
 // console.log(sayHello("Axel", 30, Genre.H));
-/* 
-
 
 let x = new CanvasServiceAPI();
 
 x.ctx.beginPath();
-x.ctx.arc(0, 0, 5, 0, 2 * Math.PI);
+x.ctx.arc(20, 20, 5, 0, 2 * Math.PI);
 x.ctx.fill();
 x.ctx.closePath();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
 
 /** The number of widgets present */
 let foo: number;
