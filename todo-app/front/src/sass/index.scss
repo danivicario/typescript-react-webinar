@@ -1,7 +1,7 @@
 @import "./reset.css";
-@import "./App.scss";
-@import "../TodoList/TodoList.scss";
-@import "../TodoItem/TodoItem.scss";
+@import "./App.css";
+@import "../TodoList/TodoList.css";
+@import "../TodoItem/TodoItem.css";
 
 * {
   box-sizing: border-box;
@@ -9,17 +9,17 @@
 }
 
 body {
+  align-items: flex-start;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
   font-family: "Titillium Web";
   font-size: 10px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
   height: 100%;
-  width: 100vw;
-  display: flex;
   justify-content: center;
-  align-items: flex-start;
+  min-height: 100vh;
   padding: 2rem 0;
+  width: 100vw;
 
   &.bg-1 {
     background-image: url(../assets/background.jpg);

@@ -1,5 +1,5 @@
 import React from "react";
-import "./TodoItem.scss";
+import "./TodoItem.css";
 import axios from "axios";
 import moment from "moment";
 
@@ -28,13 +28,13 @@ export default class TodoItem extends React.Component {
             <input
               type="checkbox"
               checked
-              onChange={_ => this.setTaskAsDone(this.props._id, this.props.done)}
+              onChange={(_) => this.setTaskAsDone(this.props._id, this.props.done)}
             />
           )}
           {!this.props.done && (
             <input
               type="checkbox"
-              onChange={_ => this.setTaskAsDone(this.props._id, this.props.done)}
+              onChange={(_) => this.setTaskAsDone(this.props._id, this.props.done)}
             />
           )}
 

@@ -1,8 +1,8 @@
 import React, { ChangeEvent } from "react";
-import "./css/App.scss";
-import TodoItem from "./TodoItem";
-import ITask from "./ITask";
 import allPrecreatedTasks from "./allTasks";
+import "./css/App.css";
+import ITask from "./ITask";
+import TodoItem from "./TodoItem";
 
 interface AppState {
   tasks: ITask[];
@@ -44,7 +44,7 @@ class App extends React.Component {
 
   setAsDone(id: string): void {
     let allTasks = [...this.state.tasks];
-    let selectedTask: ITask | undefined = allTasks.find(task => task.id === id);
+    let selectedTask: ITask | undefined = allTasks.find((task) => task.id === id);
     if (selectedTask !== undefined) selectedTask.isDone = !selectedTask.isDone;
 
     this.setState({
@@ -56,7 +56,10 @@ class App extends React.Component {
   setAsDeleted(id: string) {
     let allTasks = [...this.state.tasks];
 
-    allTasks.splice(allTasks.findIndex(task => task.id === id), 1);
+    allTasks.splice(
+      allTasks.findIndex((task) => task.id === id),
+      1
+    );
 
     this.setState({
       ...this.state,
@@ -66,7 +69,7 @@ class App extends React.Component {
 
   setTaskAsFav(id: string) {
     let allTasks = [...this.state.tasks];
-    let selectedTask: ITask | undefined = allTasks.find(task => task.id === id);
+    let selectedTask: ITask | undefined = allTasks.find((task) => task.id === id);
     if (selectedTask !== undefined) selectedTask.isFav = !selectedTask.isFav;
 
     this.setState({
@@ -83,16 +86,16 @@ class App extends React.Component {
             type="text"
             value={this.state.newTask}
             className="new-task"
-            onKeyDown={e => this.createNewTask(e)}
-            onChange={e => this.updateNewTask(e)}
+            onKeyDown={(e) => this.createNewTask(e)}
+            onChange={(e) => this.updateNewTask(e)}
             placeholder="Write new task"
           />
-          {this.state.tasks.filter(task => !task.isDone).length > 0 && (
-            <h1>To do - {this.state.tasks.filter(task => !task.isDone).length}</h1>
+          {this.state.tasks.filter((task) => !task.isDone).length > 0 && (
+            <h1>To do - {this.state.tasks.filter((task) => !task.isDone).length}</h1>
           )}
           {this.state.tasks
-            .filter(task => !task.isDone)
-            .map(task => (
+            .filter((task) => !task.isDone)
+            .map((task) => (
               <TodoItem
                 {...task}
                 key={task.id}
@@ -102,12 +105,12 @@ class App extends React.Component {
               ></TodoItem>
             ))}
 
-          {this.state.tasks.filter(task => task.isDone).length > 0 && (
-            <h1>Done - {this.state.tasks.filter(task => task.isDone).length}</h1>
+          {this.state.tasks.filter((task) => task.isDone).length > 0 && (
+            <h1>Done - {this.state.tasks.filter((task) => task.isDone).length}</h1>
           )}
           {this.state.tasks
-            .filter(task => task.isDone)
-            .map(task => (
+            .filter((task) => task.isDone)
+            .map((task) => (
               <TodoItem
                 {...task}
                 key={task.id}
