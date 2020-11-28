@@ -9,7 +9,7 @@ enum Genre {
 interface User {
   name: String;
   age?: Number;
-  genre : Genre;
+  genre: Genre;
   password: String;
   timestamp: Date;
 }
@@ -18,23 +18,23 @@ function validateUser(user: User): boolean {
   return true;
 }
 
-validateUser({"name"})
+// validateUser({"name"})
 
-let dani: User = {
-  name: "Dani",
-  password: "dsflkjsdfl",
-  age: 40,
-  timestamp: new Date()
-};
+// let dani: User = {
+//   name: "Dani",
+//   password: "dsflkjsdfl",
+//   age: 40,
+//   timestamp: new Date()
+// };
 
-let paula: User = {
-  name: "Paula",
-  password: "BCN123",
-  age: 25,
-  timestamp: new Date()
-};
+// let paula: User = {
+//   name: "Paula",
+//   password: "BCN123",
+//   age: 25,
+//   timestamp: new Date()
+// };
 
-validateUser(paula);
+// validateUser(paula);
 
 // js
 
@@ -43,8 +43,6 @@ validateUser(paula);
 // let isLightOn: boolean = true;
 
 // console.log(edad);
-
-
 
 function addNumbers(n1: number, n2: number, n3?: number): number {
   let output = n1 + n2;
@@ -65,7 +63,12 @@ function sayHello(name: string, age: number, genre: Genre): string {
 /* 
 
 
+let x = new CanvasServiceAPI();
 
+x.ctx.beginPath();
+x.ctx.arc(0, 0, 5, 0, 2 * Math.PI);
+x.ctx.fill();
+x.ctx.closePath();
 
 
 
